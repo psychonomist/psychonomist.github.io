@@ -95,7 +95,7 @@
 
 <h3 id="mathjax-improperly-parsing-greater-and-less-than-and-ampersands-inside-blocks">Mathjax improperly parsing greater and less than and ampersands inside blocks</h3>
 
-<p>The mathjax HTML <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> scripts have been modified to properly render block style mathjax expressions inside a <code class="language-plaintext highlighter-rouge">$$ ... $$</code> set of character pairs,
+<p>The mathjax HTML <code class="highlighter-rouge">&lt;head&gt;</code> scripts have been modified to properly render block style mathjax expressions inside a <code class="highlighter-rouge">$$ ... $$</code> set of character pairs,
 using the standard Kramdown parser. Some examples sent to me by Quxiaofeng are now parsing correctly, I believe.</p>
 
 <p>This code:</p>
@@ -111,48 +111,56 @@ using the standard Kramdown parser. Some examples sent to me by Quxiaofeng are n
 </code></pre></div></div>
 <p>yields this:</p>
 
-\[D = \left(\begin{matrix}
-  1 &amp; -1 &amp; &amp; &amp; &amp; \\
-  &amp;    &amp; \cdots &amp;   &amp; \\
-  &amp;    &amp;        &amp; 1 &amp; -1
+<script type="math/tex; mode=display">% <![CDATA[
+D = \left(\begin{matrix}
+  1 & -1 & & & & \\
+  &    & \cdots &   & \\
+  &    &        & 1 & -1
 \end{matrix}
-\right)\]
+\right) %]]></script>
 
 <p>Other examples from the <a href="http://latex.wikia.com/wiki/Matrix_environments">wikia Tex reference</a>:</p>
 
-\[\begin{matrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{matrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{matrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{matrix} %]]></script>
 
-\[\begin{bmatrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{bmatrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{bmatrix} %]]></script>
 
-\[\begin{Bmatrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{Bmatrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{Bmatrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{Bmatrix} %]]></script>
 
-\[\begin{vmatrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{vmatrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{vmatrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{vmatrix} %]]></script>
 
-\[\begin{Vmatrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{Vmatrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{Vmatrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{Vmatrix} %]]></script>
 
-\[\begin{Vmatrix}
-\alpha&amp; \beta^{*}\\
-\gamma^{*}&amp; \delta
-\end{Vmatrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{Vmatrix}
+\alpha& \beta^{*}\\
+\gamma^{*}& \delta
+\end{Vmatrix} %]]></script>
 
 <p>However, a problem still exists for inline matrix notation, from an example <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics#Matrices_in_running_text">here</a>:</p>
 
-<p>A matrix in text must be set smaller: \(\bigl(\begin{smallmatrix}a &amp; b \\ c &amp; d\end{smallmatrix} \bigr)\) to not increase leading in a portion of text. The way this inline matrix is written is: <code class="language-plaintext highlighter-rouge">$$ \bigl(\begin{smallmatrix}a &amp; b \\ c &amp; d\end{smallmatrix} \bigr) $$</code></p>
+<p>A matrix in text must be set smaller: <script type="math/tex">% <![CDATA[
+\bigl(\begin{smallmatrix}a & b \\ c & d\end{smallmatrix} \bigr) %]]></script> to not increase leading in a portion of text. The way this inline matrix is written is: <code class="highlighter-rouge">$$ \bigl(\begin{smallmatrix}a &amp; b \\ c &amp; d\end{smallmatrix} \bigr) $$</code></p>
 
 <h2 id="edge-case-1-from-quxiaofeng">Edge Case 1 from Quxiaofeng:</h2>
 
@@ -176,14 +184,14 @@ using the standard Kramdown parser. Some examples sent to me by Quxiaofeng are n
 
 <p>Please note that there must be <em>no blank lines between your list items</em>. This is due to a really strange thing about the Jekyll Markdown engine I have never noticed before. If you have a list, and you put a blank line between the items like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  + list item 1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  + list item 1
 
   + list item 2
 </code></pre></div></div>
 
 <p>It will create an html tag structure like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
    &lt;li&gt;
       &lt;p&gt;list item 1&lt;/p&gt;
   &lt;/li&gt;
@@ -196,13 +204,13 @@ using the standard Kramdown parser. Some examples sent to me by Quxiaofeng are n
 
 <p>However, if your Markdown is this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    + list item 1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    + list item 1
     + list item 2
 </code></pre></div></div>
 
 <p>It will create a tag structure like this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ul&gt;
    &lt;li&gt;list item 1&lt;/li&gt;
    &lt;li&gt;list item 2&lt;/li&gt;
 &lt;/ul&gt;
@@ -237,7 +245,7 @@ using the standard Kramdown parser. Some examples sent to me by Quxiaofeng are n
 
 <p>Example of the proper way to write an url inside a <em>Liquid</em> full-width image tag.</p>
 
-<p>This code: <code class="language-plaintext highlighter-rouge">{% fullwidth "assets/img/rhino.png" "Tuftes pet rhino (via &lt;a href=\"//www.edwardtufte.com/tufte/\"&gt;Edward Tufte&lt;/a&gt;)"  %}</code></p>
+<p>This code: <code class="highlighter-rouge">{% fullwidth "assets/img/rhino.png" "Tuftes pet rhino (via &lt;a href=\"//www.edwardtufte.com/tufte/\"&gt;Edward Tufte&lt;/a&gt;)"  %}</code></p>
 
 <p>produces the following image with a title. Notice that I have had to escape the double quotes in the HTML with a backslash. Also, the example above leaves out the single quote in ‘Tufte’s” because of the topsy-turvy way that you have to escape the escapes in code sections that are used for illustrative purposes in this text. Bottom line is that there are occasionally some odd interactions between the Markdown parser, custom <em>Liquid</em> tags and HTML.</p>
 <figure class="fullwidth"><img src="/assets/img/rhino.png" /><figcaption>Tufte&#8217;s pet rhino (via <a href="//www.edwardtufte.com/tufte/">Edward Tufte</a>)</figcaption></figure>
